@@ -49,7 +49,7 @@
     TabBarView.backgroundColor = [UIColor whiteColor];
     TabBarView.tintColor = [UIColor whiteColor];
     
-    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
     delegate.barView = TabBarView;
     
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, 2)];
