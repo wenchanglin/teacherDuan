@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>舞蹈用品</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/onlineshopping.css" type="text/css" rel="stylesheet">
+    </head>
+
+<body>
+    <!-- top -->
+<!--    <div style="height:10px;background:#01b095;width:100%;"></div>-->
+    <div class="top">
+        <h2>舞蹈用品</h2>
+        <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/bbk.png"></a></div>
+    </div>
+    <div class="c-list">
+        <h2>
+            <a href="javascript:;" class="" id='xiaol'>销量 </a>
+            <a href="javascript:;" id='prices'>价格 </a>
+            <a href="javascript:;" id='sort'>评分 </a>
+            
+        </h2>
+    </div>
+    <div id="dancemain" style="padding-top: 5px;">
+        <ul id="thelist"></ul>
+        <div class='clear'></div>
+    </div>
+    <input id="condition" type="hidden" value="">
+    <input type="hidden" value="DESC" id="sortType">
+    <input type="hidden" value="ASC" id="sortType1">
+    <div id='loaded' style='display: none;'><img src="../images/loading.gif"></div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/url.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+    var shopName=unescape(getQueryString("name"))
+    $(".top h2").html(shopName)
+var page=1,
+    limit=10;
+ ajaxData();
+ scroll(page++);
+ function scroll(page){
+    $(window).scroll(function(){
+        if ( $(window).scrollTop() >= $(document).height() - $(window).height() ){
+            var sortCondition=$("#condition").val();
+            ajaxData(page++,10,sortCondition);
+        }
+    })
+ }
+    // 销量------------------------------
+    $("#xiaol").toggle(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#condition").val("sellCount");
+        $("#sortType").val("DESC");
+        ajaxData(0,10,"DESC","sellCount");
+        scroll(page++);
+    },function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#condition").val("sellCount");
+        $("#sortType").val("ASC");
+        ajaxData(0,10,"ASC","sellCount");
+        scroll(page++);
+    })
+    // 价格----------------------------
+    $("#prices").toggle(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#condition").val("price");
+        $("#sortType").val("ASC");
+        ajaxData(0,10,"ASC","price");
+        scroll(page++)
+    },function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#sortType").val("DESC");
+        $("#condition").val("price");
+        ajaxData(0,10,"DESC","price");
+        scroll(page++)
+    })
+    // 评分---------------
+    $("#sort").toggle(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#sortType").val("DESC");
+        $("#condition").val("score");
+        ajaxData(0,10,"DESC","score");
+        scroll(page++)
+    },function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("#thelist").children().remove()
+        var keyWord=$("#shopsearch").val();
+        $("#condition").val("score");
+        $("#sortType").val("ASC")
+        ajaxData(0,10,"ASC","score");
+        scroll(page++)
+    })
+    function ajaxData(page,limit){
+        var sortCondition=$("#condition").val();
+        var sortType=$("#sortType").val()
+        var id=getQueryString("id")
+        $.ajax({
+            type: "POST",
+            url: commonURL+"/skl/good/queryGoodsByConditions",
+            data: {page:page,limit:limit,sortCondition:sortCondition,sortType:sortType,status:1,storeGoodClass:id},
+            dataType: 'json',
+            beforeSend:function(data){
+                $("#loaded").css("display","block");
+            },
+            success: function (data) {
+                var data =eval(data.data.iData);
+                console.log(data)
+                for(var i=0;i<data.length;i++){
+               var ka=data[i].photoCarouselList
+               if (ka==null) {
+               var li = "<li><a href='dancedetail.html?id=" + data[i].id + "'><img src='images/null.png' alt='暂无图片'><h3>" + data[i].name + "</h3><p><span>总销量" + data[i].sortSellCount + "笔</span> <em>￥" + data[i].price + "</em></p></a></li>";
+               $("#thelist").append(li);
+               }else{
+               var li = "<li><a href='dancedetail.html?id=" + data[i].id + "'><img src='"+commonURL+"/skl"+ka[0].location+"'><h3>" + data[i].name + "</h3><p><span>总销量" + data[i].sortSellCount + "笔</span> <em>￥" + data[i].price + "</em></p></a></li>";
+               $("#thelist").append(li);
+               }
+               }
+            },
+            complete:function(data){
+                $("#loaded").hide();
+            },
+            error: function () {
+                //alert("未知错误");
+            }
+        });
+    }
+function getQueryString(id) { 
+    var reg = new RegExp("(^|&)" + id + "=([^&]*)(&|$)", "i"); 
+    var r = window.location.search.substr(1).match(reg); 
+    if (r != null) return unescape(r[2]); return null; 
+} 
+</script>

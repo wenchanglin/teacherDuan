@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>申请退货</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/setup.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        .status{ background: #fff; padding: 0.25rem 0.15rem 0; margin-bottom: 0.05rem; }
+        .steps{ position: relative; background: #fff; height: 0.85rem;}
+        .line{ position: absolute; width: 66%; height: 2px; background: #01b095; top: 0.11rem; left: 50%; margin-left: -33%; z-index: 0;}
+        .status span{ float: left; width: 33.33%; text-align: center;}
+        .status h2{  margin: 0.05rem auto 0.12rem; -webkit-border-radius: 50%;border-radius: 50%; height: 0.15rem; width: 0.15rem; background: #01b095;  }
+        .status h3{ line-height: 0.19rem;font-size: 0.13rem;  color: #01b095;}
+        .status p{ line-height: 0.15rem; font-size: 10px; font-size: 0.1rem; color: #01b095;}
+        .checked h2{ background: url(images/gou.png) no-repeat center #01b095; width: 0.25rem;height: 0.25rem; line-height: 0.25rem; margin: 0 auto 0.07rem;}
+        .baogu{ position: absolute; width: 100%;  overflow: hidden; }
+
+        .remind{ background:url(images/remind.png) no-repeat 0.1rem center #fff;padding: 0.07rem 0.14rem 0.07rem 0.43rem; overflow: hidden; font-size: 0.13rem; color: #ff6400; line-height: 0.24rem; margin-bottom: 0.05rem;}
+
+        .reasons{ background: #fff; padding: 0.1rem; }
+        .reasons h2{ font-size: 0.15rem;  line-height: 0.34rem; padding-left: 0.25rem; }
+        .reasons .failed{  background: url(../images/fail.png) no-repeat left center;}
+        .reasons p{ line-height: 0.25rem; padding-left: 0.25rem; font-size: 0.13rem; color: #666;}
+        .reasons p span{ color: #ff6400;}
+
+    </style>
+</head>
+<body>
+<div class="top">
+     <h2>申请退货</h2>
+     <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+    </div>
+<div class="status">
+    <div class="steps">
+        <div class="line"></div>
+        <div class="baogu">
+            <span><h2></h2><h3>申请退货</h3><p>2016-6-21 15:57:30</p></span>
+            <span><h2></h2><h3>卖家处理</h3><p>2016-6-21 15:57:30</p></span>
+            <span class="checked"><h2></h2><h3>退货失败</h3><p>2016-6-21 15:57:30</p></span>
+        </div>
+    </div>
+</div>
+
+
+<div class="reasons">
+    <h2 class="failed">退货失败</h2>
+    <p>退款时间：2016-6-21 16:21:10</p>
+    <p>失败原因：买家损坏商品造成不能进行二次交易！</p>
+    <br>
+    <p>客服电话：<span>01559665256</span></p>
+    <br>
+</div>
+
+
+</body>
+
+</html>

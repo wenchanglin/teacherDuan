@@ -1,0 +1,275 @@
+@charset "utf-8";
+.main_visual{
+	height:1.7rem;
+	overflow:hidden;
+	position:relative;
+}
+.main_image{
+	height:1.7rem;
+	overflow:hidden;
+	position:relative;
+}
+.main_image ul{
+	width:9999px;
+	height:1.7rem;
+	overflow:hidden;
+	position:absolute;
+	top:0;left:0
+}
+.main_image li{
+	float:left;
+	width:100%;
+	height:1.7rem;
+}
+.main_image li span{
+	display:block;
+	width:100%;
+	height:1.7rem; 
+	font-size: 0;
+}
+.main_image li a{
+	display:block;
+	width:100%;
+	height:1.7rem;
+}
+.main_image li img{ 
+	height:1.7rem; 
+	width: auto;
+}
+.main_image li .img_1{
+	background:url(../images/homebanner.png) center top no-repeat; 
+	background-size: cover;
+}
+.main_image li .img_2{
+	background:url(../images/homebanner.png) center top no-repeat; 
+	background-size: cover;
+}
+.main_image li .img_3{
+	background:url(../images/homebanner.png) center top no-repeat; 
+	background-size: cover;
+}
+.main_image li .img_4{
+	background:url(../images/homebanner.png) center top no-repeat; 
+	background-size: cover;
+}
+.flicking_con{
+	position:absolute;
+	bottom:0.06rem;
+	right:0.1rem;
+	z-index:3; 
+	height: 0.08rem; 
+	font-size: 0;
+}
+.flicking_con a{
+	float:left;
+	width:0.08rem;
+	height:0.08rem;
+	margin:0  0 0 0.1rem;
+	background:#fff; 
+	-webkit-border-radius: 50%; 
+	border-radius: 50%; 
+	text-indent: -2000px; 
+	font-size: 0;
+}
+.flicking_con .on{
+	background:#01b095;
+}
+
+.search{ 
+	position: absolute; 
+	margin:0 4%; 
+	width: 92%; 
+	top: 0.13rem; 
+	height: 0.3rem; 
+	background: rgba(255,255,255,0.7); 
+	border-radius: 6px; 
+	z-index: 10;
+}
+.search input{ 
+	width: 65%; 
+	padding:0 0 0 30px; 
+	background:url(../images/sear.png) 6px center no-repeat ; 
+	height: 0.2rem; 
+	line-height: 0.2rem; 
+	float: left; 
+	margin: 0.05rem 0; 
+	font-size: 0.14rem  
+}
+.search button{ 
+	height: 0.2rem; 
+	line-height: 0.2rem;
+	margin: 0.05rem 0; 
+	float: right; 
+	background: none; 
+	padding:0 6px; 
+	color: #333; 
+	font-size: 0.14rem
+}
+.menu{
+	background: #fff;
+	position: relative;
+}
+.list{ 
+	overflow: hidden;
+}
+.list li{ 
+	width: 25%;
+	float: left; 
+	text-align: center;
+	font-size: 0.12rem; 
+	padding-top: 0.7rem; 
+	overflow: hidden; 
+	padding-bottom: 0.12rem; 
+	background-position: center 0.17rem; 
+	background-color: #fff; 
+	background-repeat: no-repeat;
+}
+.list a{ 
+	color: #333;
+}
+.none{
+	display: none;
+}
+
+.point{
+	text-align: center;
+	background: #fff; 
+	margin-bottom: 0.08rem;
+	padding-bottom: 0.05rem;
+}
+.point a{
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #999999;
+	display: inline-block;
+	margin: 0 5px;
+}
+.point a.active{
+	background: #01b095;
+}
+
+/*热门网络课程*/
+
+.hot-class{
+	background: #fff;
+}
+.chat{
+	border-bottom: 2px solid #f0f0f0;
+	padding: 0.1rem 0.1rem 0.1rem 0.35rem;
+	background: url(../images/hot1.png) no-repeat 10px center #fff;
+	background-size : 5%;
+}
+.edu{
+	border-bottom: 2px solid #f0f0f0;
+	padding: 0.1rem 0.1rem 0.1rem 0.35rem;
+	background: url(../images/edu.png) no-repeat 10px center #fff;
+	background-size: 5%;
+}
+.line_list_main{
+	padding: 0.1rem;
+	border-bottom: 0.06rem solid #f0f0f0;
+}
+.img_main img{
+	width: 100%;
+}
+.img_main {
+	width: 0.9rem;
+	height: 0.9rem;
+	text-align: center;
+	overflow: hidden;
+	margin-right: 0.1rem;
+}
+.list_title h2{
+	padding: 0.06rem 0;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.p1{
+	color: #ff0000;
+	margin-top: 0.06rem;
+}
+.p2{
+	margin-top: 0.06rem;
+}
+.p2 em,.p2 i{
+	color: #ff9402;
+}
+.p2 i{
+	padding-left: 0.05rem;
+	display: inline-block;
+}
+.online a{
+	display: inline-block;
+	background: #01b095;
+	padding: 0.06rem 0.1rem;
+	color: #fff;
+	margin-top: 0.31rem;
+	border-radius: 2px;
+}
+.online a:active{
+	background: #06907b;
+	color: #f4f4f4;
+}
+
+
+
+
+/*热门教育商品城*/
+.goods-list{ 
+	margin:0.05rem 0 0.5rem;
+}
+.goods-list ul{ 
+	overflow: hidden; 
+	margin-right: 0.05rem;
+}
+.goods-list li{ 
+	float: left; 
+	width: 50%; 
+	overflow: hidden;
+	margin-bottom: 0.04rem; 
+}
+.goods-list li a{  
+	display: block; 
+	margin: 0 0 0 0.05rem;
+	border: solid 1px #eaeaea;
+	padding:0.03rem; 
+	background: #fff; 
+	color: #333;
+}
+.goods-list li img{ 
+	height:1.3rem; 
+	width: 100%;  
+	display: block;
+}
+.goods-list li h2{ 
+	font-size: 0.11rem;
+	height:0.3rem; 
+	margin: 0.04rem 0; 
+	line-height: 0.15rem;  
+	overflow: hidden;
+}
+.goods-list li p{ 
+	color: #ff0000; 
+	line-height: 0.25rem; 
+	height:  0.25rem; 
+	overflow: hidden; 
+}
+.goods-list li span{ 
+	font-size:  0.1rem; 
+	color: #999;
+	width:55%; 
+	line-height: 0.25rem; 
+	height:  0.25rem; 
+	float: right; 
+	text-align: right;
+}
+.goods-list li em{ 
+	font-style: normal; 
+	float: left; 
+	line-height:  0.25rem; 
+	height: 0.25rem;
+	width: 45%;
+	font-size: 0.12rem; 
+}
+

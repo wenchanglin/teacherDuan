@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>待发货</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/setup.css" type="text/css" rel="stylesheet"></head>
+<body onload="loaded()">
+    <div class="top">
+     <h2>我的订单</h2>
+     <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+    </div>
+    <div class="delivery-all">
+        <a href="delivery.html" class="curr">待付款</a>
+        <a href="receive-goods.html">待收货</a>
+        <a href="order-finished.html">待评价</a>
+        <a href="return-goods.html">退货</a>
+        <a href="history.html">历史订单</a>
+        <div class="clear"></div>
+    </div>
+    <div id="wrapper">
+
+        <div id="scroller">
+            <div id="pullDown">
+                <span class="pullDownIcon"></span><span class="pullDownLabel">正在刷新</span>
+            </div>
+            <div id="thelist">
+            <div class="car-list">
+                <div class="order-num">
+                    <span>待付款</span>
+                    <div class="ttx">
+                        <img src="images/d.png" class="fl">
+                        <p class="fl">韩国女装代购</p>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                <div class="goods">
+                    <a href="delivery-order.html">
+                        <div class="img">
+                            <img src="images/spr.png" alt="" ></div>
+                        <div class="lots">
+                            <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                            <p>颜色分类：深灰</p>
+                            <div class="number">
+                                ￥129.00
+                                <span>×1</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="goods">
+                    <a href="delivery-order.html">
+                        <div class="img">
+                            <img src="images/spr.png" alt="" ></div>
+                        <div class="lots">
+                            <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                            <p>颜色分类：深灰</p>
+                            <div class="number">
+                                ￥129.00
+                                <span>×1</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="heji">合计: 258.00</div>
+                <div class="tuikuan">
+                    <a href="../onlingshopping/pay.html">支付</a>
+                    <a href="javascript:;" class="deel" onclick="del(this);return false;">删除订单</a>
+                </div>
+            </div>
+            <div class="car-list">
+                            <div class="order-num">
+                                <span>待付款</span>
+                                <div class="ttx">
+                                    <img src="images/d.png" class="fl">
+                                    <p class="fl">韩国女装代购</p>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <div class="goods">
+                                <a href="delivery-order.html">
+                                    <div class="img">
+                                        <img src="images/spr.png" alt="" ></div>
+                                    <div class="lots">
+                                        <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                                        <p>颜色分类：深灰</p>
+                                        <div class="number">
+                                            ￥129.00
+                                            <span>×1</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="goods">
+                                <a href="delivery-order.html">
+                                    <div class="img">
+                                        <img src="images/spr.png" alt="" ></div>
+                                    <div class="lots">
+                                        <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                                        <p>颜色分类：深灰</p>
+                                        <div class="number">
+                                            ￥129.00
+                                            <span>×1</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="heji">合计: 258.00</div>
+                            <div class="tuikuan">
+                                <a href="../onlingshopping/pay.html">支付</a>
+                                <a href="javascript:;" class="deel" onclick="del(this);return false;">删除订单</a>
+                            </div>
+                        </div>
+            </div>
+            <div id="pullUp" style="display:none;" >
+                <span class="pullUpIcon"></span><span class="pullUpLabel">正在加载</span>
+            </div>
+        </div>
+    </div>
+    <div class="dialog1">
+        <div class="dialog_main">
+            <h2>您确定要删除吗？</h2>
+            <p><a href="javascript:;" class="false">取消</a><a href="javascript:;" class="true">确定</a></p>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/iscroll1.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+function del(obj){
+    $(".dialog1").fadeIn(500);
+    $(".true").click(function(){
+        obj.parentNode.parentNode.remove('.car-list');
+        $(".dialog1").fadeOut(500);
+    })
+    $(".false").click(function(){
+        $(".dialog1").fadeOut(500);
+    })
+        
+}
+var myScroll,
+    pullDownEl, 
+    pullDownOffset,
+    pullUpEl, 
+    pullUpOffset,
+    generatedCount = 0;
+
+function pullDownAction () {
+    setTimeout(function () {  
+        document.getElementById("pullUp").style.display="";
+        myScroll.refresh();
+    }, 1000);
+}
+
+function pullUpAction () {
+    setTimeout(function () {
+        var  i;
+        var add = $("#thelist");
+         for (i=0; i<4; i++) {
+            var li = "<div class='car-list'>" +
+                            "<div class='order-num'>" +
+                                "<span>待付款</span>" +
+                                "<div class='ttx'>" +
+                                    "<img src='images/d.png' class='fl'>" +
+                                    "<p class='fl'>韩国女装代购</p>" +
+                                    "<div class='clear'></div>" +
+                                "</div>" +
+                            "</div>" +
+                            "<div class='goods'>" +
+                                "<a href='delivery-order.html'>" +
+                                    "<div class='img'>" +
+                                        "<img src='images/spr.png'></div>" +
+                                    "<div class='lots'>" +
+                                        "<h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>" +
+                                        "<p>颜色分类：深灰</p>" +
+                                        "<div class='number'>" +
+                                            "￥129.00" +
+                                            "<span>×1</span>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</a>" +
+                            "</div>" +
+                            "<div class='heji'>合计: 258.00</div>" +
+                            "<div class='tuikuan'>" +
+                                "<a href='../onlingshopping/pay.html'>支付</a>" +
+                                "<a href='javascript:;' class='deel' onclick='del(this);return false;'>删除订单</a>" +
+                            "</div>" +
+                        "</div>";
+            $(add).append(li);
+        }     
+        myScroll.refresh();
+    }, 1000);
+}
+
+function loaded() {
+    pullDownEl = document.getElementById('pullDown');
+    pullDownOffset = pullDownEl.offsetHeight;
+    pullUpEl = document.getElementById('pullUp');   
+    pullUpOffset = 10;
+    myScroll = new iScroll('wrapper', {
+        useTransition: true,
+        topOffset: pullDownOffset,
+        onRefresh: function () {
+            if (pullDownEl.className.match('loading')) {
+                pullDownEl.className = '';
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '正在刷新';}
+            if (pullUpEl.className.match('loading')) {
+                pullUpEl.className = '';
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '正在加载，请稍后';
+            }
+            
+            document.getElementById("pullUp").style.display="none";
+            
+        },
+        onScrollMove: function () {
+            if (this.y > 0) {
+                pullDownEl.className = 'flip';
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '正在刷新';
+                this.minScrollY = 0;
+            }
+            if (this.y < 0 && pullDownEl.className.match('flip')) {
+                pullDownEl.className = '';
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = '正在刷新';
+                this.minScrollY = -pullDownOffset;
+            }
+            
+            if ( this.scrollerH < this.wrapperH && this.y < (this.minScrollY-pullUpOffset) || this.scrollerH > this.wrapperH && this.y < (this.maxScrollY - pullUpOffset) ) {
+                document.getElementById("pullUp").style.display="";
+                pullUpEl.className = 'flip';
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '正在加载，请稍后';
+            } 
+             if (this.scrollerH < this.wrapperH && this.y > (this.minScrollY-pullUpOffset) && pullUpEl.className.match('flip') || this.scrollerH > this.wrapperH && this.y > (this.maxScrollY - pullUpOffset) && pullUpEl.className.match('flip')) {
+                document.getElementById("pullUp").style.display="none";
+                pullUpEl.className = '';
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = '正在加载，请稍后';
+            }
+        },
+        onScrollEnd: function () {
+            if (pullDownEl.className.match('flip')) {
+                pullDownEl.className = 'loading';
+                pullDownEl.querySelector('.pullDownLabel').innerHTML = 'Loading...';                
+                pullDownAction();   // Execute custom function (ajax call?)
+            } 
+             if (pullUpEl.className.match('flip')) {
+                pullUpEl.className = 'loading';
+                pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Loading...';        
+                pullUpAction(); // Execute custom function (ajax call?)
+            }
+        }
+    }); 
+}
+
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
+</script>

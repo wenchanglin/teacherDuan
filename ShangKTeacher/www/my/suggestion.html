@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>意见反馈</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/setup.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div class="top">
+ <h2>意见反馈</h2>
+ <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+ <div class="pos_right"><a href="javascript:;" class="whi">提交</a></div>
+</div>
+<div class="tet">
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea class="weui_textarea" placeholder="快来给我们提意见吧..." rows="8" onkeyup="words_deal();"></textarea>
+                <div class="weui_textarea_counter"><span id="textCount">0</span>/200</div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript"> 
+function words_deal() { 
+    var curLength=$(".weui_textarea").val().length; 
+    if(curLength>200)  { 
+        var num=$(".weui_textarea").val().substr(0,200); 
+        $(".weui_textarea").val(num); 
+        alert("超过字数限制，多出的字将被截断！" ); 
+    } else 
+    { 
+        $("#textCount").text($(".weui_textarea").val().length); 
+    } 
+} 
+</script> 

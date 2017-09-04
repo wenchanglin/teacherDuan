@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>设置</title>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="css/setup.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+    <!-- top -->
+    <div class="top">
+        <h2>设置</h2>
+        <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+    </div>
+     <div class="modify">
+         <a href="login-psw.html"><div class="psw">修改登录密码</div> </a>
+     </div>
+     <div class="modify">
+         <a href="#"><div class="psw">使用帮助</div> </a>
+         <a href="contactser.html"><div class="psw">联系客服</div> </a>
+         <a href="aboutus.html"><div class="psw">关于我们</div> </a>
+     </div>
+     <div class="modify">
+         <a href="suggestion.html"><div class="psw">意见反馈</div> </a>
+         <a href="legal.html"><div class="psw">法律声明</div> </a>
+         <a href="#"><div class="psw">检测更新 <span>当前版本1.2.2</span></div> </a>
+         <a href="#"><div class="psw cache">清除缓存  <span>126k</span></div></a>
+     </div>
+     <div class="modify">
+         <a href="javascript:;"><div class="psw out" >退出登录</div> </a>
+     </div>
+
+     <!-- 弹出层 -->
+     <div class="dia">
+         <div class="dialog">
+             <h1></h1>
+             <p>您确定要退出登录吗？</p>
+             <div class="dia_btn">
+                 <a href="javascript:;">取消</a>
+                 <a href="javascript:;">确定</a>
+             </div>
+         </div>
+    </div>
+    </body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".out").click(function(){
+            $(".dialog p").html("您确定要退出登录吗？");
+            $(".dia").fadeIn(500);
+        });
+        $(".cache").click(function(){
+            $(".dialog p").html("确定清除缓存？");
+            $(".dia").fadeIn(500);
+        });
+        $(".dia_btn a").click(function(){
+            $(".dia").fadeOut(500);
+        });
+    })
+</script>

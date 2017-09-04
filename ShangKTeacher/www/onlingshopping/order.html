@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>确认订单</title>
+        <meta charset="UTF-8">
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="format-detection" content="telephone=no">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+                    <meta name="apple-mobile-web-app-capable" content="yes">
+                        <meta name="apple-touch-fullscreen" content="yes">
+                            <link href="../css/base.css" type="text/css" rel="stylesheet">
+                                <link href="css/onlineshopping.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- top -->
+        <!--<div style="height:10px;background:#01b095;width:100%;"></div>-->
+        <div class="top">
+            <h2>确认订单</h2>
+            <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/bbk.png"></a></div>
+        </div>
+        <div class="address">
+            <a href="javascript:;" class="asd">
+                <h2><em id='addrname'>添加地址</em> <span id='addrphone'></span></h2>
+                <p id='addrs'></p>
+                <input value="" type="hidden" id="addressid">
+            </a>
+        </div>
+        <div class="car-list"></div>
+        <input type="hidden" value="" id="cunchu">
+            <div class="peisong">
+                <h2><span>￥<i id="ps">50.00</i></span>配送费用</h2>
+                <div class="weui_cell_switch">
+                    <h2 class="quan fl">可用<i id="shopjf">00</i><i id='dyjf' style="display: none;">00</i><i id='grjf' style="display: none;">00</i>积分抵押<span id="shopjfdh" style="float: none;">00</span>元</h2>
+                    <div class="weui_cell_ft fr">
+                        <input class="weui_switch" type="checkbox" style="display: none;">
+                            <div class="weui_switch">
+                                <div class="weui_switch_btn"></div>
+                            </div>
+                            </div>
+                    <div class="clear"></div>
+                </div>
+                
+                <dl class="message">
+                    <dt>买家留言</dt>
+                    <dd><textarea placeholder="选填，可填写您与卖家达成一致的要求" id="buylange" value=""></textarea></dd>
+                </dl>
+                <div class="chose">
+                    <h2>支付方式</h2>
+                    <div class="chose_pay">
+                        <div class="p_pay_bj zfb p_pay fl">
+                            <input value="1" type="hidden" class="typef">
+                                <div class="zhfb"><img src="images/zfb.png" class="fl"><span  class="fl">&nbsp;&nbsp;<em>支付宝支付</em></span>
+                                    <div class="clear"></div>
+                                    </div>
+                                </div>
+                        <div class="wx p_pay fr">
+                            <input value="2" type="hidden" class="typef">
+                                <div class="zhfb"><img src="images/wx.png" class="fl"><span  class="fl">&nbsp;&nbsp;<em>微信支付</em></span>
+                                    <div class="clear"></div>
+                                    </div>
+                                </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pay"><span>总额：￥<i id="tota">0.00</i></span>
+                <a id="payy" onclick="call(43)">立即支付</a>
+                <!--    <button  id="payy" onclick="call(43)" type="button">立即支付</button>-->
+            </div>
+            
+            <!-- 地址选择 -->
+            <div id='addrees'>
+                <!--    <div style="height:10px;background:#01b095;width:100%;"></div>-->
+                <div class="top">
+                    <h2>地址管理</h2>
+                    <div class="pos_left"><a href="javascript:;" class="back" onclick="this.parentNode.parentNode.parentNode.style.display='none'"><img src="images/bbk.png"></a></div>
+                </div>
+                <div id="add-dres">
+                    <div id="addList"></div>
+                </div>
+                <a href="javascript:void(0);" class="adddizhi">添加地址</a>
+                <form id='dizhiadd'>
+                    <!--        <div style="height:10px;background:#01b095;width:100%;"></div>-->
+                    <div class="top">
+                        <h2>添加地址</h2>
+                        <div class="pos_left"><a href="javascript:;" class="back" onclick="this.parentNode.parentNode.parentNode.style.display='none'"><img src="images/bbk.png"></a></div>
+                    </div>
+                    <div class="reason">
+                        <dl>
+                            <dt>姓       名</dt>
+                            <dd>
+                                <input class="write" value="" id='nnam' placeholder="姓名"></dd>
+                        </dl>
+                        <dl>
+                            <dt>联系方式</dt>
+                            <dd>
+                                <input class="write" value="" id='phone9' placeholder="请输入联系方式"></dd>
+                        </dl>
+                        <dl>
+                            <dt>所在区域</dt>
+                            <dd class="picked">
+                                <div class="s_province">
+                                    <div class=" choose">请选择</div>
+                                    <ul id="s_province"></ul>
+                                </div>
+                                <div class="s_city">
+                                    <div class=" choose">请选择</div>
+                                    <ul id="s_city"></ul>
+                                </div>
+                                <div class="s_county">
+                                    <div class=" choose">请选择</div>
+                                    <ul id="s_county"></ul>
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>详细地址</dt>
+                            <dd>
+                                <input class="write" value="" id='adess' placeholder="请输入详细地址"></dd>
+                        </dl>
+                        
+                    </div>
+                    <div class="save">
+                        <a class="tianjia">添加</a>
+                    </div>
+                </form>
+            </div>
+            <div id="zhifubao"></div>
+            <div id="jifen" style="position: fixed;z-index: 999;width: 30%;height: 60px;background: rgba(0,0,0,.6);color: #fff;line-height: 60px;text-align: center;top: 50%;left: 50%;margin-top: -50px;margin-left: -15%;border-radius: 3px;display: none;">
+                <p>您的积分不足</p>
+            </div>
+    </body>
+    <input type="hidden" value="" id="fkUserId">
+</html>
+<script src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script src="../js/url.js"></script>
+<script type="text/javascript">
+    var page=1,limit=10;
+    ajaxData()
+    $("#add-dres").scroll(function(){
+                          
+                          if ( $("#add-dres").scrollTop() >= $("#addList").height() - $("#add-dres").height() ){
+                          ajaxData(page++,10);
+                          
+                          }
+                          })
+                          //window.onload
+                          $(".p_pay").click(function(){
+                                            $(this).addClass("p_pay_bj").siblings("").removeClass("p_pay_bj")
+                                            })
+                                            $(".address .asd").click(function(){
+                                                                     $("#addrees").show();
+                                                                     })
+                                                                     // 地址添加-----------------------
+                                                                     $(".adddizhi").click(function(){
+                                                                                          $("#dizhiadd").fadeIn();
+                                                                                          })
+                                                                                          function ajaxData(page,limit){
+                                                                                              var fkUserId=$.cookie("userId");
+                                                                                              //alert(fkUserId)
+                                                                                              $.ajax({
+                                                                                                     url:commonURL+"/skl/order/queryUserAddressById",
+                                                                                                     type:"post",
+                                                                                                     dataType:"json",
+                                                                                                     data:{userId:fkUserId,page:page,limit:limit},
+                                                                                                     success:function(data){
+                                                                                                     console.log(data)
+                                                                                                     var day=data.data.iData
+                                                                                                     for(var i=0;i<day.length;i++){
+                                                                                                     var addr="<div class='addresslist'><div class='address-single'><div class=' add-detail'><h2><span class='xingming'>"+day[i].name+"</span><span class='mc'>"+day[i].phone+"</span> </h2><h3 class='dz'>" + day[i].province + day[i].city + day[i].area + day[i].address + "</h3><input type='hidden' value='"+day[i].id+"' class='userAddressId'></div><div class='clear'></div></div></div>";
+                                                                                                     $("#addList").prepend(addr)
+                                                                                                     $("#dizhiadd").fadeOut();
+                                                                                                     }
+                                                                                                     }
+                                                                                                     })
+                                                                                          }
+$(".save .tianjia").click(function(){
+                          var fkUserId=$.cookie("userId");
+                          var name=$("#nnam").val();
+                          var phone=$("#phone9").val();
+                          var address=$("#adess").val();
+                          var provinceId=$(".province-vule span").html();
+                          var cityId=$(".city-vule span").html();
+                          var areaId=$(".county-vule span").html();
+                          var province=$(".s_province .choose").html();
+                          var city=$(".s_city .choose").html();
+                          var area=$(".s_county .choose").html();
+                          if(name==""||phone==""||address==""||province=="请选择"||city=="请选择"||area=="请选择"){
+                          alert("请填写正确的地址")
+                          }else{
+                          $.ajax({
+                                 url:commonURL+"/skl/order/addUserAddress",
+                                 type:"post",
+                                 dataType:"json",
+                                 data:{fkUserId:fkUserId,name:name,phone:phone,address:address,provinceId:provinceId,cityId:cityId,areaId:areaId},
+                                 success:function(data){
+                                 // console.log(data)
+                                 var addr="<div class='addresslist'><div class='address-single'><div class=' add-detail'><h2><span class='xingming'>"+name+"</span><span class='mc'>"+phone+"</span> </h2><h3 class='dz'>"+province+city+area+address+"</h3><input type='hidden' value='"+data.data.id+"' class='userAddressId'></div><div class='clear'></div></div></div>";
+                                 $("#addList").prepend(addr);
+                                 $("#dizhiadd").fadeOut();
+                                 //alert(37456358)
+                                 //window.location.reload();
+                                 }
+                                 })
+                          }
+                          })
+                          // 选择地址----------------------------------
+                          $(".add-detail").live('click',function(){
+                                                var name=$(this).children().find("span.xingming").html();
+                                                var phone=$(this).children().find("span.mc").html();
+                                                var addrr=$(this).children("h3").html();
+                                                var addressid=$(this).children(".userAddressId").val();
+                                                $("#addrname").html(name);
+                                                $("#addrphone").html(phone);
+                                                $("p#addrs").html(addrr);
+                                                $("#addressid").val(addressid)
+                                                $("#addrees").fadeOut();
+                                                })
+                                                // 订单列表
+                                                $(function(){
+                                                  //var fkUserId="3109081a-14fc-41da-9408-90434490a560";
+                                                  //var fkUserId="0ca68454-00af-4f96-854c-e726686ecf6f"
+                                                  var fkUserId=$.cookie("userId");
+                                                  $.ajax({
+                                                         url:commonURL+"/skl/useraccount/queryUserAccount",
+                                                         type:"post",
+                                                         dataType:"json",
+                                                         data:{userId:fkUserId},
+                                                         success:function(data){
+                                                         console.log(data)
+                                                         console.log(data.data)
+                                                         if(data.data){
+                                                         var pre=(data.data.integral)
+                                                         if(data.data.integral==null){
+                                                         $("#grjf").html("0")
+                                                         }else{
+                                                         $("#grjf").html(data.data.integral)
+                                                         }
+                                                         }else{
+                                                         $("#jfdh").html("00")
+                                                         }
+                                                         if(getQueryString("data")){
+                                                         var data = getQueryString("data");
+                                                         var datanum=unescape(data)
+                                                         console.log(datanum)
+                                                         var bb=datanum.split("/");
+                                                         console.log(bb[0])
+                                                         var carid="{'id':'"+bb[0]+"'},"
+                                                         $.ajax({
+                                                                url:commonURL+"/skl/shoppingCart/goToPayShoppingCart",
+                                                                type:"post",
+                                                                dataType:"json",
+                                                                data:{"carts":"["+carid+"]"},
+                                                                success:function(data){
+                                                                var order=eval(data.data.iData);
+                                                                console.log(order);
+                                                                var a=0;
+                                                                for (var i = 0; i<order.length,i<bb.length; i++) {
+                                                                $("#shopjf").text(order[i].storeGoodDetail.integralDeduction*bb[1])
+                                                                $("#shopjfdh").text(order[i].storeGoodDetail.integralDeduction*bb[1])
+                                                                var pic=order[i].storeGoodDetail.storeGoodBase.photoCarouselList
+                                                                var val=order[i].storeGoodDetail.attrsValue
+                                                                var value=val.substring(1,val.length-1)
+                                                                if (pic != "" && pic.length != 0) {
+                                                                html="<div class='goods'>"+
+                                                                "<div class='img'><img src='"+commonURL+"/skl"+pic[0].location+"'></div>"+
+                                                                "<div class='lots'>"+
+                                                                "<h2 id='hh'>"+ order[i].storeGoodDetail.storeGoodBase.name +"</h2>"+
+                                                                "<p><em id='coo'>"+value+"</em></p>"+
+                                                                "<div class='number'>￥<span id='total' class='danjia'>"+(order[i].storeGoodDetail.price).toFixed(2)+"</span></span><span class='span1'>×<i id='numm' class='numm'>"+bb[1]+"</i>  </span></div>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.integralDeduction+"' class='zjf'>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.id+"' class='detailid'>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.storeGoodBase.fkStoreId+"' class='storeid'>"+
+                                                                "</div>"+
+                                                                "</div>"
+                                                                $(".car-list").append(html)
+                                                                }else{
+                                                                html="<div class='goods'>"+
+                                                                "<div class='img'><img src='images/null.png'></div>"+
+                                                                "<div class='lots'>"+
+                                                                "<h2 id='hh'>"+ order[i].storeGoodDetail.storeGoodBase.name +"</h2>"+
+                                                                "<p><em id='coo'>"+value+"</em></p>"+
+                                                                "<div class='number'>￥<span id='total' class='danjia'>"+(order[i].storeGoodDetail.price).toFixed(2)+"</span></span><span class='span1'>×<i id='numm' class='numm'>"+bb[1]+"</i>  </span></div>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.integralDeduction+"' class='zjf'>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.id+"' class='detailid'>"+
+                                                                "<input type='hidden' value='"+order[i].storeGoodDetail.storeGoodBase.fkStoreId+"' class='storeid'>"+
+                                                                "</div>"+
+                                                                "</div>"
+                                                                $(".car-list").append(html)
+                                                                }
+                                                                
+                                                                $("#ps").html(order[i].storeGoodDetail.logisticsCost)
+                                                                var a=parseFloat(order[i].storeGoodDetail.price)*parseFloat(bb[1])
+                                                                var b=parseFloat($("#ps").html())*parseFloat(bb[1])
+                                                                var shopjf=parseFloat($("#shopjf").html());
+                                                                var grjf=parseFloat($("#grjf").html());
+                                                                var num = a + b
+                                                                var num1 = num - shopjf
+                                                                $("#tota").text(num.toFixed(2));
+                                                                $(".weui_switch_btn").toggle(function(){
+                                                                                             if (shopjf < grjf) {
+                                                                                             $(this).stop().animate({'left':'20px'},100).parent().css({'background':'#01b095'})
+                                                                                             $("#dyjf").html(shopjf)
+                                                                                             if (num1<1) {
+                                                                                             $("#tota").text("0.00")
+                                                                                             }else{
+                                                                                             $("#tota").text(num1.toFixed(2));
+                                                                                             }
+                                                                                             }else{
+                                                                                             $("#jifen").fadeIn().delay().fadeOut(2000)
+                                                                                             }
+                                                                                             },function(){
+                                                                                             $(this).stop().animate({'left':'0'},100).parent().css({'background':'#dfdfdf'})
+                                                                                             $("#tota").text(num.toFixed(2));
+                                                                                             $("#dyjf").html("0")
+                                                                                             })
+                                                                }
+                                                                
+                                                                }
+                                                                })
+                                                         }else if(getQueryString("daty")){
+                                                         var data = getQueryString("daty");
+                                                         var bb=data.split("/");
+                                                         var ln=bb.length;
+                                                         var id=bb[0]
+                                                         console.log(bb[0])
+                                                         $.ajax({
+                                                                url:commonURL+"/skl/good/queryStoreGoodDetailById",
+                                                                type:"post",
+                                                                dataType:"json",
+                                                                data:{storeGoodDetailId:id},
+                                                                success:function(data){
+                                                                console.log(data)
+                                                                //var ayyr=data.data.storeGoodDetail
+                                                                $("#shopjf").text(data.data.integralDeduction*bb[1])
+                                                                $("#shopjfdh").text(data.data.integralDeduction*bb[1])
+                                                                var val=data.data.attrsValue
+                                                                var baseid=data.data.fkGoodBaseId
+                                                                var vul=val.substring(1,val.length - 1)
+                                                                var ppic=data.data.storeGoodBase.photoCarouselList
+                                                                if (ppic != "" && ppic.length != 0)
+                                                                {
+                                                                var html="<div class='goods'>"+
+                                                                "<div class='img'><img src='"+commonURL+"/skl"+data.data.storeGoodBase.photoCarouselList[0].location+"'></div>"+
+                                                                "<div class='lots'>"+
+                                                                "<h2 id='hh'>"+data.data.storeGoodBase.name+"</h2>"+
+                                                                "<p><em id='coo'>"+vul+"</em></p>"+
+                                                                "<div class='number'>￥<span id='total' class='danjia'>"+data.data.price+"</span><span class='span1'>×<i id='numm'class='numm'>"+bb[1]+"</i>  </span></div>"+
+                                                                "</div>"+
+                                                                "<input type='hidden' value='"+data.data.integralDeduction+"' class='zjf'>"+
+                                                                "<input type='hidden' value='"+id+"' class='detailid'>"+
+                                                                "<input type='hidden' value='"+data.data.storeGoodBase.fkStoreId+"' class='storeid'>"+
+                                                                "</div>"
+                                                                $(".car-list").html(html)
+                                                                }else{
+                                                                var html="<div class='goods'>"+
+                                                                "<div class='img'><img src='images/null.png'></div>"+
+                                                                "<div class='lots'>"+
+                                                                "<h2 id='hh'>"+data.data.storeGoodBase.name+"</h2>"+
+                                                                "<p><em id='coo'>"+vul+"</em></p>"+
+                                                                "<div class='number'>￥<span id='total' class='danjia'>"+data.data.price+"</span><span class='span1'>×<i id='numm'class='numm'>"+bb[1]+"</i>  </span></div>"+
+                                                                "</div>"+
+                                                                "<input type='hidden' value='"+data.data.integralDeduction+"' class='zjf'>"+
+                                                                "<input type='hidden' value='"+id+"' class='detailid'>"+
+                                                                "<input type='hidden' value='"+data.data.storeGoodBase.fkStoreId+"' class='storeid'>"+
+                                                                "</div>"
+                                                                $(".car-list").html(html)
+                                                                }
+                                                                
+                                                                $("#ps").html(data.data.logisticsCost)
+                                                                var prices=parseFloat(data.data.price)*parseFloat(bb[1]) //商品价格
+                                                                var psong=parseFloat(data.data.logisticsCost)*parseFloat(bb[1]) //总费送费
+                                                                var shopjf=parseFloat($("#shopjf").html());
+                                                                var grjf=parseFloat($("#grjf").html());
+                                                                var num=prices + psong
+                                                                var num1=prices + psong - shopjf
+                                                                $("#tota").text(num.toFixed(2));
+                                                                $(".weui_switch_btn").toggle(function(){
+                                                                                             if (shopjf < grjf) {
+                                                                                             $(this).stop().animate({'left':'20px'},100).parent().css({'background':'#01b095'})
+                                                                                             $("#dyjf").html(shopjf)
+                                                                                             if (num1<1) {
+                                                                                             $("#tota").text("0.00")
+                                                                                             }else{
+                                                                                             $("#tota").text(num1.toFixed(2));
+                                                                                             }
+                                                                                             }else{
+                                                                                             $("#jifen").fadeIn().delay().fadeOut(2000)
+                                                                                             }
+                                                                                             },function(){
+                                                                                             $(this).stop().animate({'left':'0'},100).parent().css({'background':'#dfdfdf'})
+                                                                                             $("#tota").text(num.toFixed(2));
+                                                                                             $("#dyjf").html("0")
+                                                                                             })
+                                                                }
+                                                                })
+                                                         }
+                                                         }
+                                                         })
+                                                  
+                                                  
+                                                  })
+// 立即购买--------------------------------------------
+                                                  
+                                                  function call(number){
+                                                      if ($("#addrname").html()=="添加地址"||$("#addrphone").html()==""||$("#addrs").html()=="") {
+                                                          alert("请选择地址")
+                                                      }else{
+                                                          var pay =$("#tota").html();
+                                                          var val =$("#buylange").val();
+                                                          var id=$(".detailid").val();
+                                                          var numn=$(".numm").text();
+                                                          var chooseGoodParamListStr='[{"storeGoodDetailId":"'+id+'","goodCount":"'+numn+'"}]';
+                                                          var color=$("#coo").html();
+                                                          var total=$("#total").html();
+                                                          var fkUserId=$.cookie("userId");
+                                                          var storeId=$(".storeid").val();
+                                                          var useIntegral=$("#dyjf").html();
+                                                          var receiveAddress=$("#addrs").html();
+                                                          var userAddressId=$("#addressid").val();
+                                                          var receivePhone=$("#addrphone").html();
+                                                          var receiveName=$("#addrname").html();
+                                                          var payType=$(".p_pay_bj .typef").val();
+                                                          //alert(useIntegral)
+                                                          //alert(fkUserId+"//"+storeId+"//"+useIntegral+"//"+receiveAddress+"//"+receivePhone+"//"+receiveName+"//"+payType+"//"+chooseGoodParamListStr+"//"+userAddressId)
+                                                          $.ajax({
+                                                                 type: "post",
+                                                                 url: commonURL+"/skl/order/readyToPay",
+                                                            data: {"buyUserId":fkUserId,"storeId":storeId,"useIntegral":useIntegral,"receiveAddress":receiveAddress,"receivePhone":receivePhone,"receiveName":receiveName,"payType":payType,"chooseGoodParamListStr":chooseGoodParamListStr,"userAddressId":userAddressId},
+                                                                 dataType: "json",
+                                                                 success:function(data){
+                                                                 var str1=data.data.id
+                                                                 if(payType==1){
+                                                                 
+                                                                 location.href='hq://'+str1
+                                                                 }else if(payType==2){
+                                                                 location.href='hp://'+str1
+                                                                 }
+                                                                 }
+                                                                 })
+                                                      }
+                                                  }
+// 省市级添加------------------------------------------
+$(function(){
+  $.ajax({
+         type: "get",
+         url: commonURL+"/skl/order/queryProvinces",
+         dataType: 'json',
+         success:function(data){
+         var pro=data.data.iData;
+         $.each(pro,function(i,t){
+                var li="<li><em>"+t.provinces+"</em><span style='display:none'>"+t.provincesId+"</span>"+"</li>";
+                $("#s_province").append(li)
+                })
+         }
+         })
+  })
+  // 省------------
+  $(".s_province .choose").hover(function(){
+                                 $("#s_province").slideDown();
+                                 $("#s_county,#s_city").slideUp();
+                                 $("#s_province li").click(function(){
+                                                           $(this).addClass("province-vule").siblings().removeClass("province-vule")
+                                                           var val=$(this).children("em").html();
+                                                           $(".s_province .choose").html(val);
+                                                           $("#s_province").slideUp();
+                                                           $("#s_city,#s_county").html(" ");
+                                                           $(".s_county .choose,.s_city .choose").html("请选择");
+                                                           })
+                                 },function(){$("#s_province").slideUp();})
+                                 // 市------------------------------
+                                 $(".s_city .choose").hover(function(){
+                                                            if ($(".s_province .choose").html()=="请选择") {alert("请选择省份")}else{
+                                                            $("#s_city").children().remove();
+                                                            var id=$(".province-vule span").html();
+                                                            $.ajax({
+                                                                   type: "get",
+                                                                   url: commonURL+"/skl/order/queryCities",
+                                                                   dataType: 'json',
+                                                                   data:{provincesId:id},
+                                                                   success:function(data){
+                                                                   var city=data.data.iData;
+                                                                   $.each(city,function(i,t){
+                                                                          var li="<li><em>"+t.city+"</em><span style='display:none'>"+t.cityId+"</span>"+"</li>";
+                                                                          $("#s_city").append(li)
+                                                                          })
+                                                                   }
+                                                                   })
+                                                            $("#s_city").slideDown();
+                                                            $("#s_county,#s_province").slideUp();
+                                                            $("#s_city li").live('click',function(){
+                                                                                 $(this).addClass("city-vule").siblings().removeClass("city-vule")
+                                                                                 var val=$(this).children("em").html();
+                                                                                 $(".s_city .choose").html(val);
+                                                                                 $("#s_city").slideUp();
+                                                                                 $(".s_county .choose").html("请选择");
+                                                                                 })
+                                                            }
+                                                            
+                                                            },function(){$("#s_city").slideUp();})
+                                                            
+                                                            // 县区--------------
+                                                            $(".s_county .choose").hover(function(){
+                                                                                         if ($(".s_city .choose").html()=="请选择") {alert("请选择市级")}else{
+                                                                                         $("#s_county").children().remove();
+                                                                                         var id=$(".city-vule span").html();
+                                                                                         $.ajax({
+                                                                                                type: "get",
+                                                                                                url: commonURL+"/skl/order/queryAreas",
+                                                                                                dataType: 'json',
+                                                                                                data:{cityId:id},
+                                                                                                success:function(data){
+                                                                                                var city=data.data.iData;
+                                                                                                $.each(city,function(i,t){
+                                                                                                       var li="<li><em>"+t.area+"</em><span style='display:none'>"+t.areaId+"</span>"+"</li>";
+                                                                                                       $("#s_county").append(li)
+                                                                                                       })
+                                                                                                }
+                                                                                                })
+                                                                                         $("#s_county").slideDown();
+                                                                                         $("#s_city,#s_province").slideUp();
+                                                                                         $("#s_county li").live('click',function(){
+                                                                                                                $(this).addClass("county-vule")
+                                                                                                                var val=$(this).children("em").html();
+                                                                                                                $(".s_county .choose").html(val);
+                                                                                                                $("#s_county").slideUp();
+                                                                                                                })
+                                                                                         }
+                                                                                         },function(){$("#s_county").slideUp();})
+                                                                                         
+                                                                                         
+                                                                                         function getQueryString(name) {
+                                                                                             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                                                                                             var r = window.location.search.substr(1).match(reg);
+                                                                                             if (r != null) return unescape(r[2]); return null;
+                                                                                         }
+var data=getQueryString("name")
+    </script>

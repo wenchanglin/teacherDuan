@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>发布需求</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/community.css" type="text/css" rel="stylesheet">
+    <style type="text/css">
+        .file-item{width: 0.78rem;height: 0.78rem;float: left;overflow: hidden;margin-right: 0.12rem}
+    </style>
+</head>
+<body class="white">
+    <div id="xuqiu">
+        <div style="height:10px;background:#01b095;width:100%;"></div>
+        <div class="top">
+         <h2>发布需求</h2>
+         <input value="0" id="abc" type="hidden">
+         <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+         <div class="pos_right"><a href="javascript:;" class="whi1" id="sub">提交</a></div>
+        </div>
+        <div class="eval">
+
+            <textarea id="text" onkeyup="sum ()" placeholder="说明什么吧...."></textarea>
+            <p> <em id="num">0</em>
+                /200
+            </p>
+            <div class="pic">
+            <div id="dd"></div>
+                
+                <div id="picker" class="input-file"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 添加购物车成功显示的弹窗 -->
+    <div id="shaop" style="position: fixed;width: 180px;height: 60px;border-radius: 3px;background: rgba(0,0,0,.6);top: 50%;left: 50%;margin-left: -90px;margin-top: -30px;display: none;z-index: 99">
+        <p style="color: #fff;text-align: center;line-height: 60px;font-size: 16px;">需求发布成功</p>
+    </div>
+    <input type="hidden" value="" id="fkUserId">
+    <script src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/url.js"></script>
+    <script type="text/javascript" src="../js/webuploader.js"></script>
+    <script>
+        
+    // textarea 输入的内容的字数
+        function sum(){
+            var str =document.getElementById("text");
+            var cont=str.value;
+            var len=cont.length;
+            document.getElementById("num").innerHTML=len;
+            if(len>=200){alert("您不能再写入了，已经达到最大限度！");
+                document.getElementById("text").value=cont.substr(0,199);
+            }
+        }
+    // 删除上传的图片
+     $(function(){
+        $('.cha').click(function(){
+            $(this).parent().remove();
+        })
+    })
+     // json时间转化
+     function dateFormatUtil(longTypeDate){  
+          var dateTypeDate = "";  
+          var date = new Date(longTypeDate);  
+          dateTypeDate += date.getFullYear();   //年  
+          dateTypeDate += "-" + (date.getMonth()+1); //月   
+          dateTypeDate += "-" + date.getDate();  //日  
+          dateTypeDate += '&nbsp;&nbsp;'
+          dateTypeDate += date.getHours();
+          dateTypeDate += ":"+date.getMinutes();
+          dateTypeDate += ":"+date.getSeconds();
+          return dateTypeDate;  
+     }  
+    </script>
+</body>
+
+</html>
+<script type="text/javascript">
+//11111111111111111111 添加商品轮播
+$(function(){
+        var $list = $('#dd');
+        var $btn1 = $('#sub');
+        var thumbnailWidth = 100;  
+        var thumbnailHeight = 100;
+        var uploader
+            uploader = WebUploader.create({
+               auto: false,  
+               swf: 'js/Uploader.swf',  
+               server: commonURL+'/skl/file/uploadFile',  
+               pick: '#picker',
+               fileVal:'uploadFile', 
+               //formData: {'fileType':'image','filePurpose':'imageRequirementPhoto','fkPurposeId':fkPurposeId},
+               fileNumLimit:4,
+               threads:4,
+               chunkRetry:4,
+               accept: {  
+                   title: 'Images',  
+                   extensions: 'gif,jpg,jpeg,bmp,png',  
+                   mimeTypes: 'image/*'  
+               },  
+               method:'post',  
+        });
+         uploader.on( 'fileQueued', function( file ) {
+             var $li = $(
+                     '<div id="' + file.id + '" class="file-item thumbnail remove-this">' +
+                         '<img>' +
+                         '<div class="info">' + file.name + '</div>' +
+                     '</div>'
+                     ),
+                 $img = $li.find('img');
+
+
+             // $list为容器jQuery实例
+             
+             
+                $list.prepend( $li );
+             // 创建缩略图
+             // 如果为非图片文件，可以不用调用此方法。
+             // thumbnailWidth x thumbnailHeight 为 100 x 100
+             uploader.makeThumb( file, function( error, src ) {
+                 if ( error ) {
+                     $img.replaceWith('<span>不能预览</span>');
+                     return;
+                 }
+                     $img.attr( 'src', src );
+                 }, thumbnailWidth, thumbnailHeight );
+             // $(".remove-this").live('click', function() {
+             //    alert(0)
+             //     uploader.removeFile(file,true);
+             // })
+        });
+        // uploader.on( 'uploadSuccess', function( file ) {  
+        //     alert( file.name+'上传成功');
+        //     console.log(file)
+        // });
+  uploader.on( 'uploadComplete', function( file ) {
+              var ccc=$("#abc").val();
+              var num=$("#dd").children().length
+              $("#abc").val(ccc+1)
+              if (ccc.length==num) {
+              window.location.href="community.html"
+              }
+              });
+         uploader.on( 'uploadError', function( file ) {  
+             var $li = $( '#'+file.id ),  
+                 $error = $li.find('div.error');  
+        
+             // 避免重复创建  
+             if ( !$error.length ) {  
+                 $error = $('<div class="error"></div>').appendTo( $li );  
+             }  
+        
+             $error.text('上传失败');  
+         });  
+            $btn1.on( 'click', function() { 
+                //var fkUserId="8f5d3bee-099c-4c74-9ddf-c87df4e356d4";
+                var fkUserId=getQueryString("id");
+                     //alert(fkUserId)
+                var text=$("#text").val()
+                if($list.children().length==0){
+                    alert("请添加图片")
+                    return false
+                }else{
+                    $.ajax({
+                        url:commonURL+"/skl/requirement/addRequirement",
+                        type:"post",
+                        data:{fkUserId:fkUserId,content:text},
+                        success:function(data){
+                            //console.log(data.data.id)
+                            var id=data.data.id
+                            //$("#fkid").val(data.data.id)
+                            $("#shaop").show().delay().fadeOut(800)
+                            uploader.option('formData',{
+                                'fileType':'image',
+                                'filePurpose':'imageRequirementPhoto',
+                                'fkPurposeId':id
+                        　　})
+                            uploader.upload()
+                            //setTimeout('dating()',3800)
+                        }
+                    })
+                }
+            }); 
+})
+function dating(){
+    window.location.href="community.html"
+    //location.reload();
+}
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+</script>

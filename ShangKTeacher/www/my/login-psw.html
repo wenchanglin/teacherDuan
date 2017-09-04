@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>修改登录密码</title>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="css/setup.css" type="text/css" rel="stylesheet">
+    </head>
+    <body class="white">
+     <!-- top -->
+         <div class="top">
+             <h2>修改登录密码</h2>
+             <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+         </div>
+     <form>
+     <div class="new-psw">
+         <div class="psw-over newnum"><input placeholder="请输入当前密码"></div>
+         <div class="psw-over newnum" ><input placeholder="请输入新密码" onchange="passWords()" id="passWord"></div>
+         <div class="psw-over newnum"><input placeholder="请确认新密码"></div>
+     </div>
+     <div class="save"><button>确定</button></div>
+     </form>
+     <script type="text/javascript">
+         
+//6-12位数字或字母密码
+function passWords(){ 
+    var psw = document.getElementById('passWord').value;
+    var pswnum=/^[\w]{6,12}$/;
+    if(!(pswnum.test(psw))){ 
+        alert("请输入正确的密码格式");  
+        return false; 
+    
+}
+}
+
+     </script>
+    </body>
+
+</html>

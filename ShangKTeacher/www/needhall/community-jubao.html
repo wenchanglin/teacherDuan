@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>举报</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/community.css" type="text/css" rel="stylesheet"></head>
+<body>
+    <div style="height:10px;background:#01b095;width:100%;"></div>
+    <div class="top">
+     <h2>举报</h2>
+     <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/bbk.png"></a></div>
+    </div>
+    <div class="reason">
+        <dl>
+            <dt>被举报人</dt>
+            <dd>
+                <input class="write" placeholder="李春阳"></dd>
+        </dl>
+        <dl>
+            <dt>举报原因</dt>
+            <dd class="picked">
+                <select class="choose">
+                    <option>请选择</option>
+                    <option>请选择1</option>
+                    <option>请选择2</option>
+                </select>
+            </dd>
+        </dl>
+        <div class="fnone">
+            <h2>说&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明</h2>
+            <textarea></textarea>
+        </div>
+        <dl>
+            <dt>联系电话</dt>
+            <dd>
+                <input class="write" placeholder="请填写您的联系电话" value="" id="write"></dd>
+        </dl>
+    </div>
+    <div class="jubao">
+        <button type="button">举报</button>
+    </div>
+
+    <!-- 举报成功弹窗-->
+    <div id="w-bg"></div>
+    <div class="succeed" id="succeed">
+        <div class="s-content">
+            <div class="smg">
+                <img src="images/act.png" alt=""></div>
+            <h2>感谢您的举报，客服正在处理！</h2>
+            <button type="button">关闭</button>
+        </div>
+    </div>
+</body>
+
+</html>
+ <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+ <script type="text/javascript">
+     $(function(){
+        $(".jubao button").click(function(){
+            $("#w-bg").fadeIn(500);
+            $("#succeed").fadeIn(500);
+        });
+        $(".s-content button").click(function(){
+            $("#w-bg").fadeOut(500);
+            $("#succeed").fadeOut(500);
+        })
+     })
+ </script>

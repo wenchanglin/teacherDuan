@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>商品详情detail</title>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="css/onlineshopping.css" type="text/css" rel="stylesheet">
+        
+    </head>
+   <body>
+   
+    <div class="detail">
+        <div class="b-pic">
+          <!-- 头部轮播 -->
+          <div class="main_visual">
+              <div class="flicking_con">
+                  <!-- <a href="#">1</a>
+                  <a href="#">2</a>
+                  <a href="#">3</a>
+                  <a href="#">4</a> -->
+              </div>
+              <div class="main_image">
+                  <ul id="lunb">
+                      <!-- <li><a href="#"><span class="img_3"></span></a> </li>
+                      <li><a href="#"><span class="img_2"></span></a> </li>
+                      <li><a href="#"><span class="img_4"></span></a></li>
+                      <li><a href="#"><span class="img_1"></span></a></li> -->
+
+                  </ul>
+              </div>
+          </div>
+          <a href="iOS://MYReturn" class="goback"><img src="images/back.png" alt=""> </a>
+          <div class="shopcar"><a href="javascript:;"> <img src="images/share.png" alt=""> </a></div>
+        </div>
+        <div class="intro">
+            <h1 id="name1"></h1>
+            <div class="price">￥<em id="price">0</em></div>
+            <p><span>总销量：<em id="xiaoliang">0</em>笔</span>库存：<em id="kcc">236</em>件</p>
+        </div>
+    </div>
+
+    <!-- 产品详情切换 -->
+    <div class="p-detail" >
+        <h2 id="header-wrap">
+            <a class="checked">图文详情</a><a>产品参数</a><a>商品评价</a>
+        </h2>
+        <div class="d-list">
+          <div class="lotpic">
+            <!-- <h1>2016年夏季新款 镂空蕾丝连衣裙 黑白2色</h1> -->
+            <p> </p>
+          </div>
+          <div class="canshu">
+          </div>
+         
+          <div class="elvalute"></div>
+
+        </div>
+    </div>
+
+    <!-- 底部三个按钮 -->
+    <div class="buy">
+      <a href="javascript:;" class="" id='shop'><span style="background: url(images/d.png) no-repeat 50% 0.07rem;">进入店铺</span></a>
+      <a href="javascript:;" class="sho"><span id="sho" style="background: url(images/d1.png) no-repeat 50% 0.07rem;border-left: 1px solid #eee;border-right: 1px solid #eee;">加入购物车</span></a>
+      <a href="javascript:;" class="sho2 putinto"><span id="sho2" style="background: url(images/mon.png) no-repeat 50% 0.07rem;">立即购买</span></a>
+      <div class="clear"></div>
+    </div>
+
+    <!-- share分享 -->
+    <div class="share1">
+        <div class="share_main">
+          <h2>分享到</h2>
+          <ul class="target">
+            <li><a href="javascript:;" class="wxfriend"><img src="images/w1.png"><span>微信好友</span></a></li>
+            <li><a href="javascript:;" class="wxfrdqzne"><img src="images/w2.png"><span>微信朋友圈</span></a></li>
+            <li><a href="javascript:;" class="sina"><img src="images/w3.png"><span>新浪微博</span></a></li>
+          </ul>
+          <div class="clear"></div>
+          <a href="javascript:;" class="sha">取消分享</a>
+        </div>
+    </div>
+    <!-- 添加购物车成功显示的弹窗 -->
+    <div id="shaop" style="position: fixed;width: 180px;height: 60px;border-radius: 3px;background: rgba(0,0,0,.6);top: 50%;left: 50%;margin-left: -90px;margin-top: -30px;display: none;">
+        <p style="color: #fff;text-align: center;line-height: 60px;font-size: 16px;">添加购物车成功</p>
+    </div>
+    <!--商品属性弹窗-->
+    <div id="bg"></div>
+    <div class="property">
+        <div class="content">
+            <div class="close"><img src="images/close.png"> </div>
+            <div id="tccl">
+            
+        </div>
+    </div>
+    <span id='deId' style='display:none'></span>
+    <!-- <span id='mm' style='display: none;'></span> -->
+    <input type="hidden" id="mm" value="">
+    <input type="hidden" value="" id="fkUserId">
+    <div id='desp'></div>
+    <div id='loaded' style='display: none;'><img src="../images/loading.gif"></div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/url.js"></script>
+    <script type="text/javascript" src="../js/jquery.touchSlider.js"></script>
+    <script type="text/javascript" src="../js/tab.js"></script>
+    
+    </body>
+
+</html>
+<script type="text/javascript">
+ //window.onload = window.hello.showAndroid()
+ $(".wxfriend").click(function(){
+    var id = getQueryString("id");
+    window.location.href="aa://"+id
+})
+$(".wxfrdqzne").click(function(){
+    var id = getQueryString("id");
+    window.location.href="bb://"+id
+})
+$(".sina").click(function(){
+var id = getQueryString("id");
+window.location.href="cc://"+id
+})
+var page=1;
+var limit=10;
+ajaxData();
+function ajaxData(page,limit){
+var id = getQueryString("id");
+   $.ajax({
+        type: "POST",
+        url: commonURL+"/skl/good/queryGoodComments",
+        data: {storeGoodBaseId:id,page:page,limit:limit},
+        dataType: 'json',
+         beforeSend:function(data){
+                $("#loaded").css("display","block");
+            },
+        success: function (data) {
+           var pl=data.data.iData
+           console.log(pl)
+           for(var i=0;i<pl.length;i++){
+               var strAppend = "<dl><dt><img src='"+commonURL+"/skl"+pl[i].userPhotoHead+"'> </dt><dd><h3><span>"+dateFormatUtil(pl[i].createTime)+"</span>"+pl[i].nickName+"<em><i>"+pl[i].score+"</i>分</em></h3></dd><p>"+pl[i].content+"</p></dl>"      
+                $( '.elvalute' ).append(strAppend); 
+             }
+           },
+           complete:function(data){
+                $("#loaded").hide();
+            },
+    });
+}
+$(window).scroll(function(){
+   if ( $(window).scrollTop() >= $(document).height() - $(window).height() )   
+   {  
+      ajaxData(page++,10);
+   };  
+}); 
+// 详情基本信息开始
+$(function(){
+   var id = getQueryString("id");
+   $.ajax({
+           type: "POST",
+           url: commonURL+"/skl/good/queryGoodInfoById",
+           data: {storeGoodBaseId:id},
+           dataType: 'json',
+            beforeSend:function(data){
+                $("#loaded").css("display","block");
+            },
+           success: function (data) {
+               console.log(data)
+               var vrry=data.data.photoDetailsList
+               var canshu=data.data.photoParamsList
+               var pic=data.data.photoCarouselList
+               var img="",img1="",img2=""
+               // 图文详情
+               if(vrry==null){
+                         img+="<img src=''>"
+                         $(".lotpic p").append(img)
+               }else{
+                    for(var i=0;i<vrry.length;i++){
+                         img+="<img src='"+commonURL+"/skl"+vrry[i].location+"'>"
+                    }
+                    $(".lotpic p").append(img)
+               }
+               
+               // 参数
+               if(canshu==null){
+                         img1+="<img src=''>"
+                         $(".canshu").append(img1)
+               }else{
+                    for(var i=0;i<canshu.length;i++){
+                         img1+="<img src='"+commonURL+"/skl"+canshu[i].location+"'>"
+                    }
+                    $(".canshu").append(img1)
+               }
+               
+               // 轮播图片
+              for(var z=0;z<pic.length;z++){
+                 img2+="<li><a href='javascript:;'><span style='background:url("+commonURL+"/skl"+pic[z].location+") center top no-repeat;background-size: cover;'></span></a> </li>"
+              }
+               $("#lunb").append(img2)
+               $("#price").text(data.data.price);
+               $("#name1").text(data.data.name);
+                $("#kcc").text(data.data.stock);
+               $("#xiaoliang").text(data.data.sortSellCount);
+               var idd=data.data.fkStoreId;
+               $("#shop").click(function(){
+                  location.href="shopping.html?kfstoreid="+idd
+               })
+              var num=$("#lunb li").length
+              var a=""
+              for(var i=0;i<num;i++){
+                a+="<a href='javascript:;'>"+i+"</a>"
+              }
+              $(".flicking_con").append(a)
+              // lunbo 开始
+              $dragBln = false;
+              $(".main_image").touchSlider({
+                  flexible : true,
+                  speed : 200,
+                  btn_prev : $("#btn_prev"),
+                  btn_next : $("#btn_next"),
+                  paging : $(".flicking_con a"),
+                  counter : function (e){
+                      $(".flicking_con a").removeClass("on").eq(e.current-1).addClass("on");
+                  }
+              });
+              $(".main_image").bind("mousedown", function() {
+                  $dragBln = false;
+              });
+              $(".main_image").bind("dragstart", function() {
+                  $dragBln = true;
+              });
+              $(".main_image a").live('click',function(){
+
+                  if($dragBln) {
+                      return false;
+                  }
+              });
+              timer = setInterval(function(){
+                  $("#btn_next").click();
+              }, 3000);
+              $(".main_visual").hover(function(){
+                  clearInterval(timer);
+              },function(){
+                  timer = setInterval(function(){
+                      $("#btn_next").click();
+                  },3000);
+              });
+              $(".main_image").bind("touchstart",function(){
+                  clearInterval(timer);
+              }).bind("touchend", function(){
+                  timer = setInterval(function(){
+                      $("#btn_next").click();
+                  }, 3000);
+              });
+              // 轮播结束
+           },
+           complete:function(data){
+                $("#loaded").hide();
+            },
+       });
+})
+// 详情基本信息结束
+
+// 接收页面传值-----------------------------------------------------
+function getQueryString(name) { 
+   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+   var r = window.location.search.substr(1).match(reg); 
+   if (r != null) return unescape(r[2]); return null; 
+} 
+// json时间转化
+function dateFormatUtil(longTypeDate){  
+     var dateTypeDate = "";  
+     var date = new Date(longTypeDate);  
+     dateTypeDate += date.getFullYear();   //年  
+     dateTypeDate += "-" + (date.getMonth()+1); //月   
+     dateTypeDate += "-" + date.getDate();  //日  
+     dateTypeDate += '&nbsp;'
+     dateTypeDate += date.getHours();
+     dateTypeDate += ":"+date.getMinutes();
+     dateTypeDate += ":"+date.getSeconds();
+     return dateTypeDate;  
+}    
+</script>

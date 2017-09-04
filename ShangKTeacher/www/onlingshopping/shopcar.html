@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>购物车</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/onlineshopping.css" type="text/css" rel="stylesheet">
+</head>
+   
+<body>
+<!-- top -->
+<!--<div style="height:10px;background:#01b095;width:100%;"></div>-->
+   <div class="top">
+       <h2>购物车</h2>
+       <div class="pos_left"><a href="iOS://Return" class="back"><img src="images/bbk.png"></a></div>
+   </div>
+            <div class="car-list" style="padding-bottom: 37px;">
+        </div>
+           
+ <!-- 结算     -->
+ <div class="pay">
+        <div class="jiesuan fl">
+            合计:
+            <em>￥
+                <span id="total">00.00</span></em> 
+        </div>
+        <a href="javascript:;" class="fr mun" id='jiesuan' style="background:rgba(29,121,164,1)">结算</a>
+        <div class="clear"></div>
+    </div>
+<div id="desdell" style="position: fixed;width: 100%;height: 100%;background: rgba(0,0,0,.6);top: 0;left: 0;z-index: 9;display: none;">
+    <div id="deel">
+        <p>您确定要从购物车中移除吗？</p>
+        <a href="javascript:;" class="ttru">确定</a><a href="javascript:;" class="ffal">取消</a>
+    </div>
+</div>
+    <input type="hidden" value="" id="fkUserId">
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/url.js"></script>
+    <script type="text/javascript" src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/checkall2.js"></script>
+   
+</body>
+</html>
+<script type="text/javascript">
+    try{//捕获空回调异常，解决非原生界面入口问题
+        window.onload = tianbai.call();
+    }catch(e){
+       
+    }
+function Callback(callInfo){
+    //alert(callInfo);
+        //var fkUserId="3109081a-14fc-41da-9408-90434490a560"
+        //var fkUserId="8f5d3bee-099c-4c74-9ddf-c87df4e356d4"
+        //var fkUserId=callInfo
+        if(callInfo!=null  ||  callInfo!=""){
+            $.cookie("userId", callInfo);
+        }
+        
+       // var id=getQueryString("idi")
+       // if(id){
+       //     ajaxtion(id)
+       // }else if(fkUserId){
+       //     ajaxtion(fkUserId)
+       // }
+        
+}
+var id=$.cookie("userId");
+//alert(id)
+    ajaxtion(id)
+
+function ajaxtion(id){
+    $.ajax({
+           type: "post",
+           url: commonURL+"/skl/shoppingCart/queryShoppingCartsForUser",
+           data: {userBaseId:id},
+           dataType: 'json',
+           success: function (data) {
+           var pl=data.data
+           console.log(data)
+           for(var i=0;i<pl.length;i++){
+           var pic=pl[i].storeGoodDetail.storeGoodBase.photoCarouselList
+           if (pic != "" && pic.length != 0) {
+           var html="<div class='titlezz' id='"+pl[i].id+"' data-id='"+pl[i].storeGoodDetail.storeGoodBase.fkStoreId+"'><label class='ttl'><input type='checkbox'  id='selAll1' class='ppza'><img src='images/d.png'>"+pl[i].storeGoodDetail.storeGoodBase.storeGoodClass.name+"</label><div class='goods'><label class='ttz'><input type='checkbox' name='check' class='product' value='"+pl[i].id+"'></label><a href='dancedetail.html?id="+pl[i].storeGoodDetail.storeGoodBase.id+"' class='img'><img src='"+commonURL+"/skl"+pl[i].storeGoodDetail.storeGoodBase.photoCarouselList[0].location+"'></a><div class='lots'><a href='dancedetail.html?id="+pl[i].storeGoodDetail.storeGoodBase.id+"'><h2>"+pl[i].storeGoodDetail.storeGoodBase.name+"</h2></a><div class='delete'><img src='images/delete.png'></div><div class='number'>￥ <em class='reaprice'>"+pl[i].storeGoodDetail.price.toFixed(2)+"</em><span class='money'>"+pl[i].storeGoodDetail.price+"</span><div class='operate'><div class='change'><span class='jian'>-</span><input type='text' value='"+pl[i].goodCount+"' class='text'><span class='jia'>+</span></div></div></div></div></div></div>";
+           $(".car-list").append(html);
+           }else{
+           var html="<div class='titlezz' id='"+pl[i].id+"' data-id='"+pl[i].storeGoodDetail.storeGoodBase.fkStoreId+"'><label class='ttl'><input type='checkbox'  id='selAll1' class='ppza'><img src='images/d.png'>"+pl[i].storeGoodDetail.storeGoodBase.storeGoodClass.name+"</label><div class='goods'><label class='ttz'><input type='checkbox' name='check' class='product' value='"+pl[i].id+"'></label><a href='dancedetail.html?id="+pl[i].storeGoodDetail.storeGoodBase.id+"' class='img'><img src='images/null.png'></a><div class='lots'><a href='dancedetail.html?id="+pl[i].storeGoodDetail.storeGoodBase.id+"'><h2>"+pl[i].storeGoodDetail.storeGoodBase.name+"</h2></a><div class='delete'><img src='images/delete.png'></div><div class='number'>￥ <em class='reaprice'>"+pl[i].storeGoodDetail.price.toFixed(2)+"</em><span class='money'>"+pl[i].storeGoodDetail.price+"</span><div class='operate'><div class='change'><span class='jian'>-</span><input type='text' value='"+pl[i].goodCount+"' class='text'><span class='jia'>+</span></div></div></div></div></div></div>";
+           $(".car-list").append(html);
+           }
+           }
+           }
+           })
+}
+$(function(){
+        // 结算
+        $("#jiesuan").click(function(){
+            var input=$(".goods input[type='checkbox']:checked")
+            var iid=input.val()
+            var num=input.parent().parent().children().find(".text").val()
+            var data="{'id':'"+iid+"'},"
+            var dataCar=data.substring(0,data.length-1);
+            var dataData=iid+"/"+num
+            if(input.length==0){
+                alert("请选择要结算的商品")
+            }else{
+                $.ajax({
+                    url:commonURL+"/skl/shoppingCart/goToPayShoppingCart",
+                    type:"post",
+                    dataType:"json",
+                    data:{"carts":"["+dataCar+"]"},
+                    success:function(data){
+                        location.href="order.html?data="+escape(dataData)
+                    }
+                })
+            }
+        })
+    })
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+</script>

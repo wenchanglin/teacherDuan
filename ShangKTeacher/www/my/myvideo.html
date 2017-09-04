@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>我的网络教学视频</title>
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="../css/order.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+    <!-- top -->
+    <div class="top">
+        <h2>我的网络教学视频</h2>
+        <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+    </div>
+    <!-- 群组切换 -->
+    <div class="group">
+        <a href="javascript:;" class="active">已观看的</a>
+        <a href="javascript:;" class="bor">已购买的</a>
+        <a href="javascript:;">已下载的</a>
+    </div>
+
+    <div class="group_main">
+    <!-- 群组 -->
+     <div class="car-list none" style="display: block;">
+        
+         <div class="goods">
+             <div class="img1"><img src="images/b1.png" ></div>
+             <div class="lots2">
+                 <h2>舞蹈初学者零基础教学</h2>
+                 <p>观看时间：2016-7-29 11:43:20</p>
+             </div>
+             <div class="right_icon"><a href="#"><img src="images/del.png"></a></div>
+         </div>
+        
+       
+         <div class="goods">
+             <div class="img1"><img src="images/b1.png" ></div>
+             <div class="lots2">
+                 <h2>初级钢琴班交流群</h2>
+                 <p>观看时间:2016-7-29 11:43:20</p>
+             </div>
+             <div class="right_icon"><a href="#"><img src="images/del.png"></a></div>
+         </div>
+        
+     </div>
+    <!-- 好友 -->
+     <div class="car-list none">
+         <a href="#">
+            <div class="goods">
+               <div class="img1"><img src="images/b1.png" ></div>
+               <div class="lots2">
+                   <h2>初级钢琴班交流群</h2>
+                   <span>￥126.00</span>
+                   <p class="dat">购买时间：2016-7-29 11:43:20</p>
+               </div>
+               <div class="right_icon"><img src="images/right_icon.jpg"></div>
+           </div>
+           <div class="down1">
+              <span>下载</span>
+           </div>
+         </a>
+         <a href="#">
+            <div class="goods">
+               <div class="img1"><img src="images/b1.png" ></div>
+               <div class="lots2">
+                   <h2>初级钢琴班交流群</h2>
+                   <span>￥126.00</span>
+                   <p class="dat">购买时间：2016-7-29 11:43:20</p>
+               </div>
+               <div class="right_icon"><img src="images/right_icon.jpg"></div>
+           </div>
+           <div class="down1">
+              <span>下载</span>
+           </div>
+         </a>
+     </div>
+    <!-- 课程咨询 -->
+     <div class="car-list none">
+         <div class="goods">
+             <div class="img1"><img src="images/b1.png" ></div>
+             <div class="lots2">
+                 <h2>舞蹈初学者零基础教学</h2>
+                 <p>下载时间：2016-7-29 11:43:20</p>
+             </div>
+             <div class="right_icon"><a href="#"><img src="images/del.png"></a></div>
+         </div>
+         
+     </div>
+     </div>
+    </body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $(".group a").click(function(){
+            var i=$(this).index(".group a");
+            $(this).addClass("active").siblings().removeClass("active");
+            $(".group_main .car-list:eq("+i+")").show().siblings().hide();
+        })
+        $(".right_icon a").on("click",function(){
+          $(this).parent().parent().remove();
+        })
+    })
+</script>

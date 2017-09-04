@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>支付</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/onlineshopping.css" type="text/css" rel="stylesheet"></head>
+<body>
+<!--    <button onclick="call(10086)">dianjin</button>-->
+</body>
+</html>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+    
+    $(function(){
+        var orderId=getQueryString("id");
+        console.log(orderId)
+        $.ajax({
+            url:"/skl/alipay/payOrder",
+            type:"post",
+            dataType:"json",
+            data:{orderId:orderId},
+            success:function(data){
+                $("body").html(data.msg);
+            }
+        })
+    })
+    function getQueryString(name) { 
+       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+       var r = window.location.search.substr(1).match(reg); 
+       if (r != null) return unescape(r[2]); return null; 
+    }
+</script>

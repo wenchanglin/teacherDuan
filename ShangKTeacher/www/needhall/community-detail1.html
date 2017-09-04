@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>需求大厅详情</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/community.css" type="text/css" rel="stylesheet"></head>
+<body>
+    <div style="height:10px;background:#01b095;width:100%;"></div>
+    <div class="top">
+     <h2>需求大厅</h2>
+     <div class="pos_left"><a href="community.html" class="back"><img src="images/back.jpg"></a></div>
+     <div class="pos_right"><a href="javascript:;" class="whi2">举报</a></div>
+    </div>
+            <div class="over"></div>
+            <div class="plun" id="thelist1" style="padding-bottom: 40px;">
+                <h2>回复</h2>
+            </div>
+    <div id='loaded' style='display: none;'><img src="../images/loading.gif"></div>
+    <div class="elev">
+        <a href="javascript:;">
+            <img src="images/ele.png">回复</a>
+    </div>
+
+    <!-- 回复 -->
+    <div id="huifu">
+        <div class="top">
+         <h2>需求回复</h2>
+         <div class="pos_left"><a href="javascript:;" onclick="javascript:this.parentNode.parentNode.parentNode.style.display='none'" class="back"><img src="images/back.jpg"></a></div>
+         <div class="pos_right"><a href="javascript:;" class="whi">提交</a></div>
+        </div>
+        <div class="eval">
+
+            <textarea id="text" onkeyup="sum ()" placeholder="请输入您的回复..." value=""></textarea>
+            <p> <em id="num">0</em>
+                /200
+            </p>
+
+        </div>
+    </div>
+    
+
+    <!-- 举报 -->
+    <div id="jubao1">
+        <div class="top">
+         <h2>举报</h2>
+         <div class="pos_left"><a href="javascript:;" onclick="javascript:this.parentNode.parentNode.parentNode.style.display='none'" class="back"><img src="images/back.jpg"></a></div>
+        </div>
+        <div class="reason">
+            <dl>
+                <dt>被举报人</dt>
+                <dd>
+                    <input class="write" placeholder="李春阳" value="" id="nnnma"></dd>
+            </dl>
+            <dl>
+                <dt>举报原因</dt>
+                <dd class="picked">
+                    <select class="choose" id="fkIdValue">
+                        <option value='请选择1' checked="checked">请选择1</option>
+                        <option value='请选择2'>请选择2</option>
+                        <option value='请选择3'>请选择3</option>
+                    </select>
+                </dd>
+            </dl>
+            <div class="fnone">
+                <h2>说&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明</h2>
+                <textarea id="explain" value="" placeholder="请说明举报理由"></textarea>
+            </div>
+            <dl>
+                <dt>联系电话</dt>
+                <dd>
+                    <input class="write" placeholder="请填写您的联系电话" value="" id="linkPhone"></dd>
+            </dl>
+        </div>
+        <div class="jubao">
+            <button type="button">举报</button>
+        </div>
+
+        <!-- 举报成功弹窗-->
+        <div id="w-bg"></div>
+        <div class="succeed" id="succeed">
+            <div class="s-content">
+                <div class="smg">
+                    <img src="images/act.png" alt=""></div>
+                <h2>感谢您的举报，客服正在处理！</h2>
+                <button type="button">关闭</button>
+            </div>
+        </div>
+    </div>
+     <input type="hidden" value="" id="fkUserId">
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <!-- <script type="text/javascript" src="../js/iscroll1.js"></script> -->
+    <script type="text/javascript" src="../js/url.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+ //window.onload = window.hello.showAndroid()
+var page=1,
+    limit=10;
+$(function(){
+    var id=getQueryString("id");
+    $.ajax({
+        type: "post",
+        url: commonURL+"/skl/requirement/queryRequirementComments",
+        data: {requirementId:id},
+        dataType: 'json',
+        success: function (data) {
+            console.log(data)
+            var html="<div class='m-per'><div class='touxing'><img src='"+commonURL+"/skl"+data.data.useHeaderPhoto+"'><div class='p-name'><h2>"+data.data.nickName+"</h2><p>发布时间："+dateFormatUtil(data.data.createTime)+"</p></div></div><div class='cont'><h3>"+data.data.content+"</h3></div><div class='pic-list'>"
+            var pic=data.data.photoList
+            for(var j=0;j<pic.length;j++){
+                 html+="<img src='"+commonURL+"/skl"+pic[j].location+"'>"
+            }
+            html+="</div></div>"
+            $(".over").append(html);
+            var data =eval(data.data.commentList);
+            for(var i=0;i<data.length;i++){
+                var pl="<dl><dt><img src='"+commonURL+"/skl"+data[i].useHeaderPhoto+"'><div class='fathe'><div class='e-name'><h3><a href='javascript:;' class='jju'>举报<input type='hidden' value='"+data[i].fkUserId+"' class='falkvalue'></a><i>"+data[i].nickName+"</i></h3><p>"+dateFormatUtil(data[i].createTime)+"</p></div><div class='says'>"+data[i].content+"</div></div></dt></dl>";
+                $("#thelist1").append(pl);
+
+            }
+        }
+    })
+})
+// 回复评论
+    $(function(){ 
+        $(".elev a").click(function(){
+            $("#huifu").fadeIn();
+            $(".whi").click(function(){
+                var id=getQueryString("id");
+                var fkUserId="8f5d3bee-099c-4c74-9ddf-c87df4e356d4"
+                //var fkUserId=$("#fkUserId").val()
+                var content=$("#text").val();
+                $.ajax({
+                    url:commonURL+"/skl/requirement/commentRequirement",
+                    type:"post",
+                    dataType:"json",
+                    data:{fkRequirementId:id,fkUserId:fkUserId,content:content},
+                    success:function(data){
+                        console.log(data)
+                        alert("评论成功")
+                        $("#huifu").fadeOut();
+                        location.reload();
+                    }
+                })
+            })
+        })
+        // 添加详情举报
+        $(".whi2").click(function(){
+            $("#jubao1").fadeIn();
+            var name=$(".p-name h2").text()
+            $("#nnnma").val(name)
+            $(".jubao button").click(function(){
+                var fkIdValue=getQueryString("id")
+                var linkPhone=$("#linkPhone").val();
+                var explain=$("#explain").val();
+                var reportReason=$("#fkIdValue option:checked").val();
+                $.ajax({
+                    url:commonURL+"/skl/requirement/addReport",
+                    type:"post",
+                    dataType:"json",
+                    data:{type:"requirement",linkPhone:linkPhone,explain:explain,reportReason:reportReason,fkIdValue:fkIdValue},
+                    success:function(data){
+                        console.log(data)
+                        $("#w-bg").fadeIn(500);
+                        $("#succeed").fadeIn(500);
+                    }
+                })
+            });
+            $(".s-content button").click(function(){
+                $("#w-bg").fadeOut(500);
+                $("#succeed").fadeOut(500);
+                location.reload();
+            })
+        })
+        // 评论举报
+        $(".jju").live('click',function(){
+            $("#jubao1").fadeIn();
+            var fkIdValue=$(this).children(".falkvalue").val()
+            var name=$(this).parent().children("i").text();
+            $("#nnnma").val(name)
+            $(".jubao button").click(function(){
+                var linkPhone=$("#linkPhone").val();
+                var explain=$("#explain").val();
+                var reportReason=$("#fkIdValue option:checked").val();
+                $.ajax({
+                    url:commonURL+"/skl/requirement/addReport",
+                    type:"post",
+                    dataType:"json",
+                    data:{type:"commonScore",linkPhone:linkPhone,explain:explain,reportReason:reportReason,fkIdValue:fkIdValue},
+                    success:function(data){
+                        console.log(data)
+                        $("#w-bg").fadeIn(500);
+                        $("#succeed").fadeIn(500);
+                    }
+                })
+            });
+            $(".s-content button").click(function(){
+                $("#w-bg").fadeOut(500);
+                $("#succeed").fadeOut(500);
+                location.reload();
+            })
+        })
+    })
+
+    
+    function sum(){
+        var str =document.getElementById("text");
+        var cont=str.value;
+        var len=cont.length;
+        document.getElementById("num").innerHTML=len;
+        if(len>=200){alert("您不能再写入了，已经达到最大限度！");
+            document.getElementById("text").value=cont.substr(0,199);
+        }
+    }
+    // json时间转化
+function dateFormatUtil(longTypeDate){  
+     var dateTypeDate = "";  
+     var date = new Date(longTypeDate);  
+     dateTypeDate += date.getFullYear();   //年  
+     dateTypeDate += "-" + (date.getMonth()+1); //月   
+     dateTypeDate += "-" + date.getDate();  //日  
+     dateTypeDate += '&nbsp;'
+     dateTypeDate += date.getHours();
+     dateTypeDate += ":"+date.getMinutes();
+     dateTypeDate += ":"+date.getSeconds();
+     return dateTypeDate;  
+}    
+// 接收页面传值-----------------------------------------------------
+    function getQueryString(name) { 
+       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"); 
+       var r = window.location.search.substr(1).match(reg); 
+       if (r != null) return unescape(r[2]); return null; 
+    } 
+</script>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>需求回复</title>
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link href="../css/base.css" type="text/css" rel="stylesheet">
+    <link href="css/community.css" type="text/css" rel="stylesheet"></head>
+<body class="white">
+    <form name=myform action="">
+    <div class="top">
+     <h2>需求回复</h2>
+     <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+     <div class="pos_right"><a href="javascript:;" class="whi" id="pplu">提交</a></div>
+    </div>
+    <div class="eval">
+
+        <textarea id="text" onkeyup="sum ()" placeholder="请输入您的回复..."></textarea>
+        <p> <em id="num">0</em>
+            /200
+        </p>
+
+    </div>
+</form>
+<script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../js/url.js"></script>
+<script>
+    $(function(){
+      $("#pplu").click(function(){
+                      var data=getQueryString("id");
+                      //alert(data)
+                      var idd=data.split("/")
+                      var id=idd[0]
+                      var fkUserId=idd[1]
+                      var content=$("#text").val();
+                      $.ajax({
+                             url:commonURL+"/skl/requirement/commentRequirement",
+                             type:"post",
+                             dataType:"json",
+                             data:{fkRequirementId:id,fkUserId:fkUserId,content:content},
+                             success:function(data){
+                             //console.log(data)
+                             alert("评论成功")
+                             //$("#huifu").fadeOut();
+                             window.location.href="community-detail.html?id=" + id+"/"+fkUserId
+                             }
+                     })
+        })
+    })
+    
+    function sum(){
+    var str =document.getElementById("text");
+    var cont=str.value;
+    var len=cont.length;
+    document.getElementById("num").innerHTML=len;
+    if(len>=200){alert("您不能再写入了，已经达到最大限度！");
+        document.getElementById("text").value=cont.substr(0,199);
+    }
+}
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+</script>
+
+</body>
+
+</html>

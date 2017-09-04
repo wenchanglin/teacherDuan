@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>资金明细</title>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="css/setup.css" type="text/css" rel="stylesheet">
+    </head>
+    <body onload="loaded()">
+     <div class="top">
+        <h2>资金明细</h2>
+        <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+    </div>
+      <div id="wrapper" style="top: 0.45rem;">
+
+        <div id="scroller">
+            <div id="scroller-pullDown"  class="none">
+                <span id="pullDown-msg">Loading...</span>
+            </div>
+    <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+     <div class="record">
+        <div class="state-detail fl">
+            <h2>购买课程</h2>
+            <p>2016-6-22 15:09:46</p>
+        </div>
+        <div class="state fr"><span>- 600.00</span></div>
+        <div class="clear"></div>
+    </div>
+      <div id="scroller-pullUp" class="none">
+                <span id="pullUp-msg">正在加载，请稍候...</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="../js/iscroll.js"></script>
+    <script type="text/javascript">
+
+function loaded () {
+    var myScroll,
+    myScroll = new IScroll('#wrapper', { probeType: 3, mouseWheel: true,preventDefault:false });    
+    myScroll.on("slideDown",function(){
+        if(this.y > 40){
+            alert("Loading...");  
+        }
+    });
+    
+    myScroll.on("slideUp",function(){
+        if(this.maxScrollY - this.y > 40){
+            alert("正在加载，请稍候...");       
+        }
+    });
+}
+document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    </script>
+    </body>
+
+</html>

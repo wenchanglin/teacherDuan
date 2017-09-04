@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>已完成订单详情</title>
+        <meta charset="utf-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-touch-fullscreen" content="yes">
+        <link href="../css/base.css" type="text/css" rel="stylesheet">
+        <link href="css/setup.css" type="text/css" rel="stylesheet">
+    </head>
+    <body>
+     <div class="top">
+       <h2>订单详情</h2>
+       <div class="pos_left"><a href="javascript:history.go(-1)" class="back"><img src="images/back.jpg"></a></div>
+      </div>
+     <div class="car-list">
+         <div class="order-num">
+             <div class="ttx">
+                 <img src="images/d.png" class="fl">
+                 <p class="fl">韩国女装代购</p>
+                 <div class="clear"></div>
+             </div>
+         </div>
+         <div class="goods">
+             <a href="../onlingshopping/dancedetail.html">
+             <div class="img"><img src="images/spr.png" alt="" ></div>
+             <div class="lots">
+                 <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                 <p>颜色分类：深灰</p>
+                 <div class="number">￥129.00<span>×1  </span></div>
+             </div>
+             </a>
+         </div>
+         <div class="goods">
+             <a href="../onlingshopping/dancedetail.html">
+             <div class="img"><img src="images/spr.png" alt="" ></div>
+             <div class="lots">
+                 <h2>时尚简约办公家具6人位办公桌椅4人位组合屏风工作位职员卡座定制</h2>
+                 <p>颜色分类：深灰</p>
+                 <div class="number">￥129.00<span>×1  </span></div>
+             </div>
+                 </a>
+         </div>
+         <div class="heji">合计: 258.00 </div>
+     </div>
+     <div class="order-detail">
+         <h2>下单时间<span>2016-6-20 16:50:00</span></h2>
+         <h2>订单状态<span class="red">已完成</span></h2>
+         <div class="address">
+                 <h3>李钟硕 <span>15026310231</span></h3>
+                 <p>浙江省杭州市余杭区良渚街道 金家渡南路4号金手指网商
+                     创意园二号楼五楼S52</p>
+         </div>
+         <dl class="message">
+             <dt>买家留言</dt>
+             <dd>
+                 <textarea>贵重物品请包装仔细点，贵重物品请包装仔细点贵重物品请包装
+仔细点贵重物品请包装仔细点，贵重物品请包装仔细点贵重物，
+品请包装仔细点贵重物品请包装仔细</textarea></dd>
+         </dl>
+     </div>
+      <div class="pay"> <a href="eveluate.html">评价</a></div>
+     <script src="../js/jquery-1.8.3.min.js"></script>
+     <script>
+        //删除订单
+$(function(){
+    
+    $(".goaway").click(function(){
+        if(confirm("确认删除这个订单吗，删除之后不能恢复")){
+        }
+        else{
+            return;
+        }
+    });
+ });
+ 
+
+     </script>
+    </body>
+
+</html>
